@@ -93,11 +93,11 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  nendb-client health
-  nendb-client stats
-  nendb-client bfs --start-node 0 --max-depth 3
-  nendb-client dijkstra --start-node 0 --end-node 5
-  nendb-client pagerank --iterations 100 --damping-factor 0.85
+  nendb health
+  nendb stats
+  nendb bfs --start-node 0 --max-depth 3
+  nendb dijkstra --start-node 0 --end-node 5
+  nendb pagerank --iterations 100 --damping-factor 0.85
         """
     )
     

@@ -23,18 +23,18 @@ def read_requirements(filename):
     return []
 
 setup(
-    name="nen-python-driver",
+    name="nendb",
     version="0.1.0",
     description="High-performance Python client for NenDB graph database",
     long_description=read_readme(),
     long_description_content_type="text/markdown",
     author="Nen Team",
     author_email="team@nen.co",
-    url="https://github.com/Nen-Co/nen-python-driver",
+    url="https://github.com/Nen-Co/nendb-python-driver",
     project_urls={
-        "Bug Tracker": "https://github.com/Nen-Co/nen-python-driver/issues",
+        "Bug Tracker": "https://github.com/Nen-Co/nendb-python-driver/issues",
         "Documentation": "https://docs.nen.co",
-        "Source Code": "https://github.com/Nen-Co/nen-python-driver",
+        "Source Code": "https://github.com/Nen-Co/nendb-python-driver",
     },
     packages=find_packages(where="src"),
     package_dir={"": "src"},
@@ -62,7 +62,7 @@ setup(
     },
     entry_points={
         "console_scripts": [
-            "nendb-client=nen_python_driver.cli:main",
+            "nendb=nen_python_driver.cli:main",
         ],
     },
     include_package_data=True,
