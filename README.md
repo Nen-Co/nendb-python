@@ -29,8 +29,51 @@ The Python driver communicates with NenDB's HTTP server, which is built in Zig f
 pip install NenDB
 ```
 
-## Quick Start
+## 🚀 Quick Start
 
+### 📦 NenDB Server Installation
+
+Before using the Python driver, you need to have the NenDB server running. Here are the quickest ways to get started:
+
+#### Linux/macOS (Quick Install)
+```bash
+curl -fsSL https://github.com/Nen-Co/nen-db/releases/latest/download/nen-linux-x86_64.tar.gz | tar -xz
+```
+
+#### Windows PowerShell
+```powershell
+Invoke-WebRequest -Uri "https://github.com/Nen-Co/nen-db/releases/latest/download/nen-windows-x86_64.zip" -OutFile "nen-windows.zip"
+Expand-Archive -Path "nen-windows.zip" -DestinationPath "."
+```
+
+#### 🐳 Docker (Recommended)
+```bash
+# Pull and run with HTTP server on port 8080
+docker run --rm -p 8080:8080 --name nendb \
+  -v $(pwd)/data:/data \
+  ghcr.io/nen-co/nendb:latest
+```
+
+#### 🧪 Build from Source
+```bash
+git clone https://github.com/Nen-Co/nen-db.git
+cd nen-db
+zig build
+./zig-out/bin/nendb
+```
+
+### ✅ Verify Server is Running
+```bash
+curl http://localhost:8080/health
+# Should return: {"status": "healthy", "service": "nendb", "version": "0.0.1"}
+```
+
+### 🚀 Install Python Driver
+```bash
+pip install NenDB
+```
+
+### 💻 Basic Usage Example
 ```python
 from nen_python_driver import NenDBClient
 
