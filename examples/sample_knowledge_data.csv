@@ -1,0 +1,32 @@
+# Knowledge Graph Example Data
+# Simple e-commerce product relationships
+
+subject,predicate,object
+User:alice,purchased,Product:laptop_dell_xps
+User:alice,viewed,Product:mouse_logitech_mx
+User:alice,viewed,Product:keyboard_mechanical
+User:bob,purchased,Product:laptop_dell_xps
+User:bob,purchased,Product:keyboard_mechanical
+User:bob,viewed,Product:monitor_4k
+User:charlie,purchased,Product:mouse_logitech_mx
+User:charlie,viewed,Product:laptop_macbook_pro
+Product:laptop_dell_xps,category,Electronics
+Product:laptop_dell_xps,brand,Dell
+Product:laptop_dell_xps,price_range,high
+Product:laptop_macbook_pro,category,Electronics
+Product:laptop_macbook_pro,brand,Apple
+Product:laptop_macbook_pro,price_range,premium
+Product:mouse_logitech_mx,category,Electronics
+Product:mouse_logitech_mx,brand,Logitech
+Product:mouse_logitech_mx,price_range,medium
+Product:keyboard_mechanical,category,Electronics
+Product:keyboard_mechanical,type,mechanical
+Product:keyboard_mechanical,price_range,medium
+Product:monitor_4k,category,Electronics
+Product:monitor_4k,resolution,4K
+Product:monitor_4k,price_range,high
+Dell,company_type,manufacturer
+Apple,company_type,manufacturer
+Logitech,company_type,manufacturer
+Electronics,department,Technology
+Technology,sector,Consumer_Goods

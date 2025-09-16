@@ -1,0 +1,17 @@
+# Requirements for Knowledge Graph Examples
+pandas>=1.5.0
+numpy>=1.21.0
+requests>=2.28.0
+
+# Optional but recommended for advanced graph analysis
+networkx>=2.8
+matplotlib>=3.5.0
+scikit-learn>=1.1.0
+
+# For vector embeddings and ML integration
+sentence-transformers>=2.2.0
+torch>=1.12.0
+
+# For data processing
+python-dotenv>=0.20.0
+pydantic>=1.10.0
