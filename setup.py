@@ -19,7 +19,17 @@ def read_requirements(filename):
     requirements_path = os.path.join(os.path.dirname(__file__), filename)
     if os.path.exists(requirements_path):
         with open(requirements_path, "r", encoding="utf-8") as f:
-            return [line.strip() for line in f if line.strip() and not line.startswith("#")]
+            requirements = []
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#"):
+                    if line.startswith("-r "):
+                        # Handle recursive requirements
+                        sub_file = line[3:].strip()
+                        requirements.extend(read_requirements(sub_file))
+                    else:
+                        requirements.append(line)
+            return requirements
     return []
 
 setup(
@@ -54,11 +64,9 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
     python_requires=">=3.8",
-    install_requires=read_requirements("requirements.txt"),
+    install_requires=read_requirements("requirements.txt") or [],
     extras_require={
-        "dev": read_requirements("requirements-dev.txt"),
-        "docs": read_requirements("requirements-docs.txt"),
-        "test": read_requirements("requirements-test.txt"),
+        "dev": read_requirements("requirements-dev.txt") or [],
     },
     entry_points={
         "console_scripts": [
