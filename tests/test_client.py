@@ -21,7 +21,9 @@ class TestNenDBClient(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures"""
-        self.client = NenDBClient("http://localhost:8080", skip_validation=True)
+        self.client = NenDBClient(
+            "http://localhost:8080", skip_validation=True
+        )
         self.mock_response = Mock()
         self.mock_response.status_code = 200
         self.mock_response.json.return_value = {"status": "success"}
@@ -128,8 +130,8 @@ class TestNenDBClient(unittest.TestCase):
         with patch("requests.Session.request") as mock_request:
             mock_response = Mock()
             mock_response.status_code = 404
-            mock_response.raise_for_status.side_effect = requests.exceptions.HTTPError(
-                "404 Not Found"
+            mock_response.raise_for_status.side_effect = (
+                requests.exceptions.HTTPError("404 Not Found")
             )
             mock_request.return_value = mock_response
 
@@ -150,7 +152,9 @@ class TestNenDBClient(unittest.TestCase):
         with patch("requests.Session.request") as mock_request:
             mock_response = Mock()
             mock_response.status_code = 200
-            mock_response.json.side_effect = json.JSONDecodeError("Invalid JSON", "", 0)
+            mock_response.json.side_effect = json.JSONDecodeError(
+                "Invalid JSON", "", 0
+            )
             mock_request.return_value = mock_response
 
             with self.assertRaises(NenDBError):

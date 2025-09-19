@@ -117,7 +117,9 @@ Examples:
     )
 
     # Subcommands
-    subparsers = parser.add_subparsers(dest="command", help="Available commands")
+    subparsers = parser.add_subparsers(
+        dest="command", help="Available commands"
+    )
 
     # Health command
     health_parser = subparsers.add_parser("health", help="Check server health")
