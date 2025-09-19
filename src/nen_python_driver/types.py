@@ -3,7 +3,7 @@ Type definitions for the NenDB Python driver
 """
 
 from typing import Dict, List, Optional, Union, Any
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import Enum
 
 
@@ -79,16 +79,12 @@ class AlgorithmResult:
 class BFSResult(AlgorithmResult):
     """Result of BFS algorithm execution"""
 
-    visited_nodes: List[int] = None
-    path: List[int] = None
+    visited_nodes: List[int] = field(default_factory=list)
+    path: List[int] = field(default_factory=list)
     depth: int = 0
 
     def __post_init__(self):
         super().__post_init__()
-        if self.visited_nodes is None:
-            self.visited_nodes = []
-        if self.path is None:
-            self.path = []
         if not isinstance(self.visited_nodes, list):
             raise ValueError("Visited nodes must be a list")
         if not isinstance(self.path, list):
@@ -101,16 +97,12 @@ class BFSResult(AlgorithmResult):
 class DijkstraResult(AlgorithmResult):
     """Result of Dijkstra algorithm execution"""
 
-    shortest_path: List[int] = None
+    shortest_path: List[int] = field(default_factory=list)
     total_cost: float = 0.0
-    path_details: List[Dict[str, Any]] = None
+    path_details: List[Dict[str, Any]] = field(default_factory=list)
 
     def __post_init__(self):
         super().__post_init__()
-        if self.shortest_path is None:
-            self.shortest_path = []
-        if self.path_details is None:
-            self.path_details = []
         if not isinstance(self.shortest_path, list):
             raise ValueError("Shortest path must be a list")
         if not isinstance(self.total_cost, (int, float)):
@@ -123,14 +115,12 @@ class DijkstraResult(AlgorithmResult):
 class PageRankResult(AlgorithmResult):
     """Result of PageRank algorithm execution"""
 
-    node_scores: Dict[int, float] = None
+    node_scores: Dict[int, float] = field(default_factory=dict)
     iterations: int = 0
     convergence: bool = False
 
     def __post_init__(self):
         super().__post_init__()
-        if self.node_scores is None:
-            self.node_scores = {}
         if not isinstance(self.node_scores, dict):
             raise ValueError("Node scores must be a dictionary")
         if not isinstance(self.iterations, int):
