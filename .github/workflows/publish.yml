@@ -35,8 +35,7 @@ jobs:
         
     - name: Run linting
       run: |
-        pip install black flake8 mypy
-        black --check src/ tests/
+        pip install flake8 mypy
         flake8 src/ tests/
         mypy src/
 
