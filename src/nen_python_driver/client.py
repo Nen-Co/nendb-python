@@ -56,8 +56,7 @@ class NenDBClient:
                 self.health()
             except Exception as e:
                 raise NenDBConnectionError(
-                    f"Failed to connect to NenDB server at "
-                    f"{self.base_url}: {e}"
+                    f"Failed to connect to NenDB server at " f"{self.base_url}: {e}"
                 )
 
     def _create_session(self) -> requests.Session:
@@ -198,9 +197,7 @@ class NenDBClient:
             NenDBError: On algorithm failure
         """
         if not isinstance(start_node, int) or start_node < 0:
-            raise NenDBValidationError(
-                "start_node must be a non-negative integer"
-            )
+            raise NenDBValidationError("start_node must be a non-negative integer")
         if not isinstance(max_depth, int) or max_depth < 1:
             raise NenDBValidationError("max_depth must be a positive integer")
 
@@ -209,9 +206,7 @@ class NenDBClient:
         if filters:
             data["filters"] = filters
 
-        return self._make_request(
-            "POST", "/graph/algorithms/bfs", data=data
-        )
+        return self._make_request("POST", "/graph/algorithms/bfs", data=data)
 
     def dijkstra(
         self,
@@ -234,13 +229,9 @@ class NenDBClient:
             NenDBError: On algorithm failure
         """
         if not isinstance(start_node, int) or start_node < 0:
-            raise NenDBValidationError(
-                "start_node must be a non-negative integer"
-            )
+            raise NenDBValidationError("start_node must be a non-negative integer")
         if not isinstance(end_node, int) or end_node < 0:
-            raise NenDBValidationError(
-                "end_node must be a non-negative integer"
-            )
+            raise NenDBValidationError("end_node must be a non-negative integer")
         if not isinstance(weight_property, str):
             raise NenDBValidationError("weight_property must be a string")
 
@@ -250,9 +241,7 @@ class NenDBClient:
             "weight_property": weight_property,
         }
 
-        return self._make_request(
-            "POST", "/graph/algorithms/dijkstra", data=data
-        )
+        return self._make_request("POST", "/graph/algorithms/dijkstra", data=data)
 
     def pagerank(
         self,
@@ -275,15 +264,9 @@ class NenDBClient:
             NenDBError: On algorithm failure
         """
         if not isinstance(iterations, int) or iterations < 1:
-            raise NenDBValidationError(
-                "iterations must be a positive integer"
-            )
-        if not isinstance(damping_factor, float) or not (
-            0.0 <= damping_factor <= 1.0
-        ):
-            raise NenDBValidationError(
-                "damping_factor must be between 0.0 and 1.0"
-            )
+            raise NenDBValidationError("iterations must be a positive integer")
+        if not isinstance(damping_factor, float) or not (0.0 <= damping_factor <= 1.0):
+            raise NenDBValidationError("damping_factor must be between 0.0 and 1.0")
         if not isinstance(tolerance, float) or tolerance <= 0.0:
             raise NenDBValidationError("tolerance must be a positive float")
 
@@ -293,9 +276,7 @@ class NenDBClient:
             "tolerance": tolerance,
         }
 
-        return self._make_request(
-            "POST", "/graph/algorithms/pagerank", data=data
-        )
+        return self._make_request("POST", "/graph/algorithms/pagerank", data=data)
 
     def close(self):
         """Close the client session and free resources"""
