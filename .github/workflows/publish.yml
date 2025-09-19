@@ -42,6 +42,8 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     environment: pypi  # This matches the environment name in PyPI config
+    permissions:
+      id-token: write  # Required for trusted publishing
     
     steps:
     - name: Checkout code
