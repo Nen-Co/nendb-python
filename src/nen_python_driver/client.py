@@ -204,7 +204,10 @@ class NenDBClient:
         if not isinstance(max_depth, int) or max_depth < 1:
             raise NenDBValidationError("max_depth must be a positive integer")
 
-        data: Dict[str, Any] = {"start_node": start_node, "max_depth": max_depth}
+        data: Dict[str, Any] = {
+            "start_node": start_node,
+            "max_depth": max_depth,
+        }
 
         if filters:
             data["filters"] = filters
