@@ -13,8 +13,8 @@ __email__ = "team@nen.co"
 
 __all__ = [
     "NenDBClient",
-    "NenDBError", 
+    "NenDBError",
     "GraphNode",
     "GraphEdge",
-    "AlgorithmResult"
+    "AlgorithmResult",
 ]

@@ -9,6 +9,7 @@ from enum import Enum
 
 class AlgorithmStatus(Enum):
     """Status of algorithm execution"""
+
     QUEUED = "queued"
     RUNNING = "running"
     COMPLETED = "completed"
@@ -19,10 +20,11 @@ class AlgorithmStatus(Enum):
 @dataclass
 class GraphNode:
     """Represents a node in the graph"""
+
     id: int
     labels: List[str]
     properties: Dict[str, Any]
-    
+
     def __post_init__(self):
         if not isinstance(self.id, int):
             raise ValueError("Node ID must be an integer")
@@ -35,12 +37,13 @@ class GraphNode:
 @dataclass
 class GraphEdge:
     """Represents an edge in the graph"""
+
     id: int
     source: int
     target: int
     type: str
     properties: Dict[str, Any]
-    
+
     def __post_init__(self):
         if not isinstance(self.id, int):
             raise ValueError("Edge ID must be an integer")
@@ -57,11 +60,12 @@ class GraphEdge:
 @dataclass
 class AlgorithmResult:
     """Base class for algorithm results"""
+
     algorithm: str
     status: AlgorithmStatus
     message: str
     metadata: Optional[Dict[str, Any]] = None
-    
+
     def __post_init__(self):
         if not isinstance(self.algorithm, str):
             raise ValueError("Algorithm name must be a string")
@@ -74,10 +78,11 @@ class AlgorithmResult:
 @dataclass
 class BFSResult(AlgorithmResult):
     """Result of BFS algorithm execution"""
+
     visited_nodes: List[int] = None
     path: List[int] = None
     depth: int = 0
-    
+
     def __post_init__(self):
         super().__post_init__()
         if self.visited_nodes is None:
@@ -95,10 +100,11 @@ class BFSResult(AlgorithmResult):
 @dataclass
 class DijkstraResult(AlgorithmResult):
     """Result of Dijkstra algorithm execution"""
+
     shortest_path: List[int] = None
     total_cost: float = 0.0
     path_details: List[Dict[str, Any]] = None
-    
+
     def __post_init__(self):
         super().__post_init__()
         if self.shortest_path is None:
@@ -116,10 +122,11 @@ class DijkstraResult(AlgorithmResult):
 @dataclass
 class PageRankResult(AlgorithmResult):
     """Result of PageRank algorithm execution"""
+
     node_scores: Dict[int, float] = None
     iterations: int = 0
     convergence: bool = False
-    
+
     def __post_init__(self):
         super().__post_init__()
         if self.node_scores is None:
